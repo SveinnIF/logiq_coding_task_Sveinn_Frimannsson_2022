@@ -4,7 +4,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        List<String> list = ReadFile.read("C:\\Users\\svøn\\IdeaProjects\\logiq_coding_task_Sveinn_Frimannsson_2022\\actiontexts.txt");
+        List<String> list = ReadFile.read("C:\\Users\\svøn\\IdeaProjects\\logiq_coding_task_Sveinn_Frimannsson_2022\\src\\actiontexts.txt");
 
         for(String elem : list){ // iterating through the list
             String[] parts = elem.split(":"); // splitting the elements in two parts, the action part and the text part
@@ -75,7 +75,7 @@ In Java 12 it is possible to make the switch statement into a switch expression,
                 case "WHITESPACE" -> remove_whitespace(text);
                 case "UNIQUE_COUNT" -> unique_count(text);
                 case "PALINDROME" -> palindrome(text);
-                default -> System.out.println("Unknown action: " + action);
+                default -> throw new IllegalStateException("Invalid action");
             }
 
 This would make it a bit easier to read and can reduce the amount of bugs in the code according Oracle: https://blogs.oracle.com/javamagazine/post/new-switch-expressions-in-java-12
