@@ -13,30 +13,24 @@ public class Main {
             String action = parts[0];
             String text = parts[1];
 
-            switch (action) {
-                case "REVERSE":
-                    System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + StringUtils.reverse_text(text) + "]");
-                    break;
-
-                case "WHITESPACE":
-                    System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + StringUtils.remove_whitespace(text) + "]");
-                    break;
-
-                case "UNIQUE_COUNT":
-                    System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + StringUtils.unique_count(text) + "]");
-                    break;
-
-                case "PALINDROME":
-                    System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + StringUtils.palindrome(text) + "]");
-                    break;
-
-                case "CAPITALIZE":
-                    System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + StringUtils.capitalize(text) + "]");
-                    break;
-
-                default:
-                    System.out.println("Unknown Action: " + action);
+            try{
+                System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + perform_action(action, text) + "]");
+            }catch (IllegalArgumentException ex){
+                System.out.println(action + " is an unknown action");
             }
+
+
+        }
+    }
+
+    public static String perform_action(String action, String text) {
+        switch (action) {
+            case "REVERSE": return StringUtils.reverse_text(text);
+            case "WHITESPACE": return StringUtils.remove_whitespace(text);
+            case "UNIQUE_COUNT": return String.valueOf(StringUtils.unique_count(text));
+            case "PALINDROME": return String.valueOf(StringUtils.palindrome(text));
+            case "CAPITALIZE": return StringUtils.capitalize(text);
+            default: throw new IllegalArgumentException("no function of said name found in switch statement");
         }
     }
 }
@@ -44,11 +38,12 @@ public class Main {
 
 /*
 In Java 12 it is possible to make the switch statement look like this:
-            switch (action) {
-                case "REVERSE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
-                case "WHITESPACE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + remove_whitespace(text) + "]");
-                case "UNIQUE_COUNT" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + unique_count(text) + "]");
-                case "PALINDROME" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
-                default -> System.out.println("Unknown Action: " + action);
-            }
+        return switch (action) {
+            case "REVERSE" -> StringUtils.reverse_text(text);
+            case "WHITESPACE" -> StringUtils.remove_whitespace(text);
+            case "UNIQUE_COUNT" -> String.valueOf(StringUtils.unique_count(text));
+            case "PALINDROME" -> String.valueOf(StringUtils.palindrome(text));
+            case "CAPITALIZE" -> StringUtils.capitalize(text);
+            default -> action + " is an unknown action";
+        };
  */

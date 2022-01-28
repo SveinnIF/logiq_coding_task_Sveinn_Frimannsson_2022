@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Function;
 
 public class StringUtils {
 
@@ -30,13 +31,9 @@ public class StringUtils {
         return unique_character_count;
     }
 
-    public static String palindrome(String text) {
+    public static boolean palindrome(String text) {
         String reversed_text = reverse_text(text);
-        if(reversed_text.equals(text)){
-            return "True";
-        }else{
-            return "False";
-        }
+        return reversed_text.equals(text);
     }
 
     public static String capitalize(String text){
