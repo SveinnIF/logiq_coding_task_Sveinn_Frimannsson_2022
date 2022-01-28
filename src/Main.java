@@ -14,11 +14,24 @@ public class Main {
             String text = parts[1];
 
             switch (action) { // checking what action to preform on what text and then calling the function that does said action
-                case "REVERSE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
-                case "WHITESPACE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + remove_whitespace(text) + "]");
-                case "UNIQUE_COUNT" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + unique_count(text) + "]");
-                case "PALINDROME" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
-                default -> System.out.println("Unknown Action: " + action);
+                case "REVERSE":
+                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
+                    break;
+
+                case "WHITESPACE":
+                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + remove_whitespace(text) + "]");
+                    break;
+
+                case "UNIQUE_COUNT":
+                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + unique_count(text) + "]");
+                    break;
+
+                case "PALINDROME":
+                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
+                    break;
+
+                default:
+                    System.out.println("Unknown Action: " + action);
             }
         }
     }
@@ -40,9 +53,9 @@ public class Main {
 
     private static int unique_count(String text) {
         int unique_character_count = 0;
-        List<Character> visited_characters = new LinkedList<Character>(); // array for storing characters
+        List<Character> visited_characters = new LinkedList<>(); // LinkedList for storing characters
         for (int i = 0; i < text.length(); i++) { // going through all characters in string
-            if(!visited_characters.toString().contains(text.subSequence(i, i +1))) { // checks if the text contains characters that has already visited
+            if (!visited_characters.contains(text.charAt(i))) { // checks if the text contains characters that has already visited
                 unique_character_count++; // if the character is not in the visited_characters array, it is a unique character and is added to the count
                 visited_characters.add(text.charAt(i)); // then this character is added to the visited_characters array, so it is not counted again
             }
@@ -59,3 +72,14 @@ public class Main {
         }
     }
 }
+
+/*
+In Java 12 it is possible to make the switch statement look like this:
+            switch (action) {
+                case "REVERSE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
+                case "WHITESPACE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + remove_whitespace(text) + "]");
+                case "UNIQUE_COUNT" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + unique_count(text) + "]");
+                case "PALINDROME" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
+                default -> System.out.println("Unknown Action: " + action);
+            }
+ */
