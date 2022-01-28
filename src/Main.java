@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -39,15 +40,15 @@ public class Main {
 
 
     private static int unique_count(String text) {
-        int count = 0;
-        StringBuilder holder = new StringBuilder(" ");
-        for (int i = 0; i < text.length(); i++) {
-            if(!holder.toString().contains(text.subSequence(i, i +1))) {
-                count++;
-                holder.append(text.charAt(i));
+        int unique_character_count = 0;
+        List<Character> visited_characters = new LinkedList<Character>(); // array for storing characters
+        for (int i = 0; i < text.length(); i++) { // going through all characters in string
+            if(!visited_characters.toString().contains(text.subSequence(i, i +1))) { // checks if the text contains characters that has already visited
+                unique_character_count++; // if the character is not in the visited_characters array, it is a unique character and is added to the count
+                visited_characters.add(text.charAt(i)); // then this character is added to the visited_characters array so it is not counted again
             }
         }
-        return count;
+        return unique_character_count;
     }
 
     private static String palindrome(String text) {
