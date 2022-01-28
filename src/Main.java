@@ -30,6 +30,10 @@ public class Main {
                     System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
                     break;
 
+                case "CAPITALIZE":
+                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + capitalize(text) + "]");
+                    break;
+
                 default:
                     System.out.println("Unknown Action: " + action);
             }
@@ -70,6 +74,10 @@ public class Main {
         }else{
             return "False";
         }
+    }
+
+    private static String capitalize(String text){
+        return text.substring(0, 1).toUpperCase() + text.substring(1);
     }
 }
 
