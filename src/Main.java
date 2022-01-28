@@ -8,12 +8,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         List<String> list = ReadFile.read("C:\\Users\\svøn\\IdeaProjects\\logiq_coding_task_Sveinn_Frimannsson_2022\\src\\actiontexts.txt");
 
-        for(String elem : list){ // iterating through the list
-            String[] parts = elem.split(":"); // splitting the elements in two parts, the action part and the text part
+        for(String elem : list){
+            String[] parts = elem.split(":");
             String action = parts[0];
             String text = parts[1];
 
-            switch (action) { // checking what action to preform on what text and then calling the function that does said action
+            switch (action) {
                 case "REVERSE":
                     System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
                     break;
@@ -38,34 +38,34 @@ public class Main {
 
     private static String reverse_text(String text) {
 
-        StringBuilder text_reversed = new StringBuilder(); // making a string builder
+        StringBuilder text_reversed = new StringBuilder();
 
-        text_reversed.append(text); // appending the text to the string builder
+        text_reversed.append(text);
 
-        text_reversed.reverse(); // using the string builder to reverse the text
+        text_reversed.reverse();
 
         return String.valueOf(text_reversed);
     }
 
     private static String remove_whitespace(String text) {
-        return text.replaceAll("\\s", ""); // replaces all white spaces, denoted in unicode as "\\s", and replacing it with not a space.
+        return text.replaceAll("\\s", "");
     }
 
     private static int unique_count(String text) {
         int unique_character_count = 0;
-        List<Character> visited_characters = new LinkedList<>(); // LinkedList for storing characters
-        for (int i = 0; i < text.length(); i++) { // going through all characters in string
-            if (!visited_characters.contains(text.charAt(i))) { // checks if the text contains characters that has already visited
-                unique_character_count++; // if the character is not in the visited_characters array, it is a unique character and is added to the count
-                visited_characters.add(text.charAt(i)); // then this character is added to the visited_characters array, so it is not counted again
+        List<Character> visited_characters = new LinkedList<>();
+        for (int i = 0; i < text.length(); i++) {
+            if (!visited_characters.contains(text.charAt(i))) {
+                unique_character_count++;
+                visited_characters.add(text.charAt(i));
             }
         }
         return unique_character_count;
     }
 
     private static String palindrome(String text) {
-        String reversed_text = reverse_text(text); // using the reverse text function to reverse the text
-        if(reversed_text.equals(text)){ // checking if the text is equal to its reversed counterpart
+        String reversed_text = reverse_text(text);
+        if(reversed_text.equals(text)){
             return "True";
         }else{
             return "False";
