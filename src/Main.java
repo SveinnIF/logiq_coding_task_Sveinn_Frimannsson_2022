@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.List;
 
+
 public class Main {
 
     public static void main(String[] args) throws IOException {
@@ -12,24 +13,11 @@ public class Main {
             String text = parts[1];
 
             switch (action) { // checking what action to preform on what text and then calling the function that does that action
-                case "REVERSE":
-                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
-                    break;
-
-                case "WHITESPACE":
-                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + remove_whitespace(text) + "]");
-                    break;
-
-                case "UNIQUE_COUNT":
-                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + unique_count(text) + "]");
-                    break;
-
-                case "PALINDROME":
-                    System.out.println("Text: ["+ text +"] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
-                    break;
-
-                default:
-                    System.out.println("Unknown Action: " + action);
+                case "REVERSE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + reverse_text(text) + "]");
+                case "WHITESPACE" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + remove_whitespace(text) + "]");
+                case "UNIQUE_COUNT" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + unique_count(text) + "]");
+                case "PALINDROME" -> System.out.println("Text: [" + text + "] ran Action: [" + action + "] with the result of: [" + palindrome(text) + "]");
+                default -> System.out.println("Unknown Action: " + action);
             }
         }
     }
@@ -48,15 +36,20 @@ public class Main {
     private static String remove_whitespace(String text) {
         return text.replaceAll("\\s", ""); // replaces all white spaces, denoted in unicode as "\\s", and replacing it with not a space.
     }
+
+
     private static int unique_count(String text) {
         int count = 0;
+        StringBuilder holder = new StringBuilder(" ");
         for (int i = 0; i < text.length(); i++) {
-            if (Character.isLetter(text.charAt(i)) || Character.isDigit(text.charAt(i))) {
+            if(!holder.toString().contains(text.subSequence(i, i +1))) {
                 count++;
+                holder.append(text.charAt(i));
             }
         }
         return count;
     }
+
     private static String palindrome(String text) {
         String reversed_text = reverse_text(text); // using the reverse text function to reverse the text
         if(reversed_text.equals(text)){ // checking if the text is equal to its reversed counterpart
@@ -68,15 +61,13 @@ public class Main {
 }
 
 /*
-In Java 12 it is possible to make the switch statement into a switch expression, like this:
+In Java 12 it is possible to make the switch statement look like this:
 
             switch (action) {
                 case "REVERSE" -> reverse_text(text);
                 case "WHITESPACE" -> remove_whitespace(text);
                 case "UNIQUE_COUNT" -> unique_count(text);
                 case "PALINDROME" -> palindrome(text);
-                default -> throw new IllegalStateException("Invalid action");
+                default -> System.out.println("Unknown Action: " + action);
             }
-
-This would make it a bit easier to read and can reduce the amount of bugs in the code according Oracle: https://blogs.oracle.com/javamagazine/post/new-switch-expressions-in-java-12
  */
