@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -18,8 +17,6 @@ public class Main {
             }catch (IllegalArgumentException ex){
                 System.out.println(action + " is an unknown action");
             }
-
-
         }
     }
 
@@ -30,7 +27,7 @@ public class Main {
             case "UNIQUE_COUNT": return String.valueOf(StringUtils.unique_count(text));
             case "PALINDROME": return String.valueOf(StringUtils.palindrome(text));
             case "CAPITALIZE": return StringUtils.capitalize(text);
-            default: throw new IllegalArgumentException("no function of said name found in switch statement");
+            default: throw new IllegalArgumentException("No function of said name found in switch statement");
         }
     }
 }
